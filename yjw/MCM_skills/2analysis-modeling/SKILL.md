@@ -10,6 +10,12 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 如需领域判断，读取 `../_references/math_modeling_norms.md` 中的“赛题理解与子问题识别”“假设与模型建立”和“题型防错速查”小节。该文件只作为规范知识库，不替代本阶段的分析报告结构。
 
+大多数情况下，可以用python写程序求解。但python执行效率过低，而数学建模竞赛本身对编程语言又无要求，因此当所用算法的时间复杂度较高，而使用C++、Java、C#中的任意一种写代码又完全可行时，应当使用C++、Java、C#中的任意一种写代码。
+
+使用C++、Java、C#中的任意一种写代码的弊端在于这几种语言的生态远不如python完善，因此在选择编程语言时应充分考虑这点。
+
+制图这种时间复杂度不高且使用python生态可减轻工作强度的工作可以使用python。
+
 ## 必须产出
 
 在当前工作目录的 `reports/` 子目录中创建或更新：
