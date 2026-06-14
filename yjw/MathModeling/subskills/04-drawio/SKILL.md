@@ -1,21 +1,21 @@
 ---
-name: 4drawio
+name: 04-drawio
 description: "数学建模非数据型图示绘制阶段。根据 ANALYSIS_MODELING_REPORT.md、RESULTS_REPORT.md 和已有 figures/ 生成技术路线图、子问题求解流程图、模型结构图、数据处理流程图等 DrawIO 图，并导出论文可引用 PDF。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
 # DrawIO 非数据图示绘制
 
-本 skill 承接 `3coding-visual`。它只负责论文中的**非数据型图示**，例如技术路线图、求解流程图、模型结构图、数据处理流程图、变量关系图、指标体系图等。
+本 skill 承接 `03-coding-visual`。它只负责论文中的**非数据型图示**，例如技术路线图、求解流程图、模型结构图、数据处理流程图、变量关系图、指标体系图等。
 
 ## 数学建模规范参考
 
-如需领域判断，读取 `../_references/math_modeling_norms.md` 中的“图表与可视化”和“非数据图工具选择”小节。该文件只作为规范知识库，不要求为了凑数量生成额外图示。
+如需领域判断，读取 `../../references/math_modeling_norms.md` 中的“图表与可视化”和“非数据图工具选择”小节。该文件只作为规范知识库，不要求为了凑数量生成额外图示。
 
 ## 阶段边界
 
 - 本阶段负责：DrawIO 源文件、非数据图 PDF、图示生成记录。
-- 本阶段不负责：折线图、柱状图、散点图、热力图、箱线图、雷达图等数据图。这些由 `3coding-visual` 生成。
+- 本阶段不负责：折线图、柱状图、散点图、热力图、箱线图、雷达图等数据图。这些由 `03-coding-visual` 生成。
 - 本阶段不重跑模型、不修改 `code/`，不改写 `reports/RESULTS_REPORT.md` 的数值结论。
 
 ## 必须产出
@@ -134,7 +134,7 @@ fi
 - 箭头不穿过核心节点。
 - 字号、颜色、边框风格一致。
 - 文件名和图意一致。
-- 没有与 `3coding-visual` 的数据图重复。
+- 没有与 `03-coding-visual` 的数据图重复。
 
 发现问题要修 `.drawio` 并重新导出，不要只在报告里解释。
 
@@ -156,7 +156,7 @@ fi
 ## 给论文阶段的嵌入建议
 ```
 
-嵌入建议只说明每张图适合放入哪个章节和建议 caption，不生成 `*_typst_includes.typ`。最终的 `#figure(image(...), caption: [...])` 由 `5writing` 根据论文结构决定。
+嵌入建议只说明每张图适合放入哪个章节和建议 caption，不生成 `*_typst_includes.typ`。最终的 `#figure(image(...), caption: [...])` 由 `05-writing` 根据论文结构决定。
 
 ## 质量要求
 

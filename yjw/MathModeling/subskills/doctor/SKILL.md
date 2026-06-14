@@ -14,12 +14,12 @@ allowed-tools: Bash(*), Read, Write
 
 | 工具 | 用途 | 检测命令 |
 | --- | --- | --- |
-| `typst` | 论文编译（5writing、6verity） | `command -v typst` |
-| `python3` | 数值计算与图表（3coding-visual） | `command -v python3` |
-| `drawio` / `draw.io` | DrawIO 流程图导出 PDF（4drawio） | `command -v drawio \|\| command -v draw.io` |
-| `pdftoppm` | PDF 转 PNG 视觉检查（6verity） | `command -v pdftoppm` |
-| `mutool` | PDF 转 PNG 备用（6verity） | `command -v mutool` |
-| `magick` | PDF 转 PNG 备用（6verity） | `command -v magick` |
+| `typst` | 论文编译（05-writing、06-verity） | `command -v typst` |
+| `python3` | 数值计算与图表（03-coding-visual） | `command -v python3` |
+| `drawio` / `draw.io` | DrawIO 流程图导出 PDF（04-drawio） | `command -v drawio \|\| command -v draw.io` |
+| `pdftoppm` | PDF 转 PNG 视觉检查（06-verity） | `command -v pdftoppm` |
+| `mutool` | PDF 转 PNG 备用（06-verity） | `command -v mutool` |
+| `magick` | PDF 转 PNG 备用（06-verity） | `command -v magick` |
 
 ### Python 包
 
@@ -197,12 +197,12 @@ Doctor 检查完成（macOS）
 可选项：2/4（drawio、scipy 缺失）
 
 工作流就绪状态：
-  1start-mathmodel   ✓
-  2analysis-modeling ✓
-  3coding-visual     ✓（scipy 缺失，部分功能受限）
-  4drawio            ⚠ drawio 未安装，PDF 导出将跳过
-  5writing           ✓
-  6verity            ⚠ 无 PDF 转 PNG 工具，视觉检查将跳过
+  01-start-mathmodel   ✓
+  02-analysis-modeling ✓
+  03-coding-visual     ✓（scipy 缺失，部分功能受限）
+  04-drawio            ⚠ drawio 未安装，PDF 导出将跳过
+  05-writing           ✓
+  06-verity            ⚠ 无 PDF 转 PNG 工具，视觉检查将跳过
 ```
 
 ## 注意事项

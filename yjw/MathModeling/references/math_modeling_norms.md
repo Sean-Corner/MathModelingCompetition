@@ -6,24 +6,24 @@
 
 | 小节 | 主要使用方 |
 | --- | --- |
-| [赛题理解与子问题识别](#赛题理解与子问题识别) | `2analysis-modeling` |
-| [假设与模型建立](#假设与模型建立) | `2analysis-modeling` |
-| [题型防错速查](#题型防错速查) | `2analysis-modeling` `3coding-visual` |
-| [代码实现与结果](#代码实现与结果) | `3coding-visual` |
-| [编码阶段常见错误](#编码阶段常见错误) | `3coding-visual` |
-| [图表与可视化](#图表与可视化) | `3coding-visual` `4drawio` `5writing` |
-| [非数据图工具选择](#非数据图工具选择) | `4drawio` `5writing` |
-| [论文写作](#论文写作) | `5writing` |
-| [论文验收与一致性](#论文验收与一致性) | `6verity` |
-| [模型大分类与选型速查](#模型大分类与选型速查) | `2analysis-modeling` |
-| [评价类模型详细指南](#评价类模型详细指南) | `2analysis-modeling` `3coding-visual` |
-| [预测类模型详细指南](#预测类模型详细指南) | `2analysis-modeling` `3coding-visual` |
-| [优化类模型详细指南](#优化类模型详细指南) | `2analysis-modeling` `3coding-visual` |
-| [机理/动力学类模型详细指南](#机理动力学类模型详细指南) | `2analysis-modeling` `3coding-visual` |
-| [图论与网络类模型](#图论与网络类模型) | `2analysis-modeling` `3coding-visual` |
-| [统计分析与机器学习](#统计分析与机器学习) | `2analysis-modeling` `3coding-visual` |
-| [论文写作规范补充](#论文写作规范补充) | `5writing` |
-| [美赛（MCM/ICM）专项规范](#美赛mcmicm专项规范) | `5writing` |
+| [赛题理解与子问题识别](#赛题理解与子问题识别) | `02-analysis-modeling` |
+| [假设与模型建立](#假设与模型建立) | `02-analysis-modeling` |
+| [题型防错速查](#题型防错速查) | `02-analysis-modeling` `03-coding-visual` |
+| [代码实现与结果](#代码实现与结果) | `03-coding-visual` |
+| [编码阶段常见错误](#编码阶段常见错误) | `03-coding-visual` |
+| [图表与可视化](#图表与可视化) | `03-coding-visual` `04-drawio` `05-writing` |
+| [非数据图工具选择](#非数据图工具选择) | `04-drawio` `05-writing` |
+| [论文写作](#论文写作) | `05-writing` |
+| [论文验收与一致性](#论文验收与一致性) | `06-verity` |
+| [模型大分类与选型速查](#模型大分类与选型速查) | `02-analysis-modeling` |
+| [评价类模型详细指南](#评价类模型详细指南) | `02-analysis-modeling` `03-coding-visual` |
+| [预测类模型详细指南](#预测类模型详细指南) | `02-analysis-modeling` `03-coding-visual` |
+| [优化类模型详细指南](#优化类模型详细指南) | `02-analysis-modeling` `03-coding-visual` |
+| [机理/动力学类模型详细指南](#机理动力学类模型详细指南) | `02-analysis-modeling` `03-coding-visual` |
+| [图论与网络类模型](#图论与网络类模型) | `02-analysis-modeling` `03-coding-visual` |
+| [统计分析与机器学习](#统计分析与机器学习) | `02-analysis-modeling` `03-coding-visual` |
+| [论文写作规范补充](#论文写作规范补充) | `05-writing` |
+| [美赛（MCM/ICM）专项规范](#美赛mcmicm专项规范) | `05-writing` |
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: 6verity
+name: 06-verity
 description: "数学建模竞赛最终验证和验收阶段。用于论文写完后按实际项目结构检查 Typst 章节数量、标题顺序、图表引用、数值一致性、占位符、内部文件泄露、参考文献、代码可复现性、Typst 编译和提交就绪状态。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
@@ -10,7 +10,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 ## 数学建模规范参考
 
-如需领域判断，读取 `../_references/math_modeling_norms.md` 中的“论文验收与一致性”小节。该文件只是规范知识库，不是固定执行流程；具体目录、入口文件、结果文件和图表目录由当前项目结构决定。
+如需领域判断，读取 `../../references/math_modeling_norms.md` 中的“论文验收与一致性”小节。该文件只是规范知识库，不是固定执行流程；具体目录、入口文件、结果文件和图表目录由当前项目结构决定。
 
 ## 阶段边界
 

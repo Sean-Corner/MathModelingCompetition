@@ -1,22 +1,22 @@
 ---
-name: 3coding-visual
+name: 03-coding-visual
 description: "数学建模编程实现与数据图表生成阶段。根据 ANALYSIS_MODELING_REPORT.md 编写可复现代码、运行求解、验证约束、输出 RESULTS_REPORT.md 并生成论文可用的数据驱动图表 PDF。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
 # 编程实现与数据图表生成
 
-本 skill 承接 `2analysis-modeling`。目标是把 `reports/ANALYSIS_MODELING_REPORT.md` 里的模型和算法落实为可复现程序，跑出可信结果，并生成论文中需要的数据型图表。
+本 skill 承接 `02-analysis-modeling`。目标是把 `reports/ANALYSIS_MODELING_REPORT.md` 里的模型和算法落实为可复现程序，跑出可信结果，并生成论文中需要的数据型图表。
 
 ## 数学建模规范参考
 
-如需领域判断，读取 `../_references/math_modeling_norms.md` 中的“题型防错速查”“代码实现与结果”“编码阶段常见错误”和“图表与可视化”小节。该文件只作为规范知识库，不新增本阶段的固定产物。
+如需领域判断，读取 `../../references/math_modeling_norms.md` 中的“题型防错速查”“代码实现与结果”“编码阶段常见错误”和“图表与可视化”小节。该文件只作为规范知识库，不新增本阶段的固定产物。
 
 ## 阶段边界
 
 - 本阶段负责：代码、实验运行、结果、结果表、数据驱动图表。
-- 本阶段不负责：技术路线图、算法流程图、系统架构图、概念示意图。这些交给 `4drawio`。
-- 本阶段不写论文正文，只为 `5writing` 提供可信数值和图表资产。
+- 本阶段不负责：技术路线图、算法流程图、系统架构图、概念示意图。这些交给 `04-drawio`。
+- 本阶段不写论文正文，只为 `05-writing` 提供可信数值和图表资产。
 
 
 ### Step 1: 代码
