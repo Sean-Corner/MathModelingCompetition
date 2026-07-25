@@ -1,0 +1,56 @@
+{
+  "title": "Math Modeling",
+  "name": "math-modeling",
+  "description": "数学建模竞赛全流程 Skill：从赛题分析、建模、编码、绘图到论文撰写与验证。",
+  "entry": "SKILL.md",
+  "workflow": [
+    {
+      "step": 1,
+      "skill": "01-start-mathmodel",
+      "path": "subskills/01-start-mathmodel"
+    },
+    {
+      "step": 2,
+      "skill": "02-analysis-modeling",
+      "path": "subskills/02-analysis-modeling"
+    },
+    {
+      "step": 3,
+      "skill": "03-coding-visual",
+      "path": "subskills/03-coding-visual"
+    },
+    {
+      "step": 4,
+      "skill": "04-drawio",
+      "path": "subskills/04-drawio"
+    },
+    {
+      "step": 5,
+      "skill": "05-writing",
+      "path": "subskills/05-writing"
+    },
+    {
+      "step": 6,
+      "skill": "06-verity",
+      "path": "subskills/06-verity"
+    }
+  ],
+  "tools": [
+    {
+      "skill": "doctor",
+      "path": "subskills/doctor"
+    },
+    {
+      "skill": "typst-author",
+      "path": "subskills/typst-author"
+    }
+  ],
+  "resources": {
+    "references": [
+      "references/math_modeling_norms.md"
+    ],
+    "assets": [
+      "assets/templates"
+    ]
+  }
+}
