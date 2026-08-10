@@ -16,7 +16,7 @@ description: "数学建模竞赛全流程 Skill。用于需要完成赛题分析
 | 0 | `doctor` | 手动触发的环境检查与安装向导。 | 依赖检查结果 |
 | 1 | `01-start-mathmodel` | 启动工作流，记录偏好，生成整体计划。 | `plan.md`, `todo.md` |
 | 2 | `02-analysis-modeling` | 解析题目、拆解子问题、建立模型和求解方案。 | `reports/ANALYSIS_MODELING_REPORT.md` |
-| 3 | `03-coding-visual` | 实现代码、运行实验、保存结果并生成数据图。 | `code/`, `results/`, `reports/RESULTS_REPORT.md`, `figures/*.pdf` |
+| 3 | `03-coding` | 实现代码、运行实验、保存结果并生成数据图。 | `code/`, `results/`, `reports/RESULTS_REPORT.md`, `figures/*.pdf` |
 | 4 | `04-drawio` | 绘制技术路线图、流程图、模型结构图等非数据图。 | `figures/*.drawio`, `figures/*.pdf`, `reports/DRAWIO_REPORT.md` |
 | 5 | `05-writing` | 选择模板并撰写 Typst 竞赛论文。 | `paper/` |
 | 6 | `06-verity` | 验证论文、图表、数值、代码复现和提交状态。 | `reports/VERIFY_REPORT.md` |
@@ -27,7 +27,7 @@ description: "数学建模竞赛全流程 Skill。用于需要完成赛题分析
 
 - 先判断用户是否要完整流程，还是只要某个阶段；完整流程从 `01-start-mathmodel` 开始。
 - 每个阶段只做本阶段职责，不提前写后续阶段产物。
-- 数据图由 `03-coding-visual` 生成；流程图、路线图和架构图由 `04-drawio` 生成。
+- 数据图由 `03-coding` 生成；流程图、路线图和架构图由 `04-drawio` 生成。
 - 论文中的数值结论必须来自 `reports/RESULTS_REPORT.md`、结果表或图表数据，不得在写作阶段重新编造。
 - 验收阶段发现硬错误时，优先小范围修复；若需要重新建模或重跑实验，在 `reports/VERIFY_REPORT.md` 标记返回对应阶段。
 

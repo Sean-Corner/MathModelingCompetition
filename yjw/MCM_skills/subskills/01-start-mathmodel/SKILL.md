@@ -39,9 +39,10 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 要依次调用这些 skill，按照里面要求完成任务。
 
 workflow:
-   step      skills
+step skills
+
 1. 赛题分析与建模设计 - `02-analysis-modeling`
-2. 编程实现和图表生成 - `03-coding-visual`
+2. 编程实现和图表生成 - `03-coding`
 3. 流程与架构图绘制 - `04-drawio`
 4. 竞赛论文撰写 - `05-writing`
 5. 验证和验收 - `06-verity`
@@ -84,11 +85,16 @@ workflow:
 ```markdown
 # 待办事项
 
-- [ ] 1. 赛题分析与建模设计 - `02-analysis-modeling`
-- [ ] 2. 编程实现和图表生成 - `03-coding-visual`
-- [ ] 3. 流程与架构图绘制 - `04-drawio`
-- [ ] 4. 竞赛论文撰写 - `05-writing`
-- [ ] 5. 验证和验收 - `06-verity`
+- [ ] 
+    1. 赛题分析与建模设计 - `02-analysis-modeling`
+- [ ] 
+    2. 编程实现和图表生成 - `03-coding`
+- [ ] 
+    3. 流程与架构图绘制 - `04-drawio`
+- [ ] 
+    4. 竞赛论文撰写 - `05-writing`
+- [ ] 
+    5. 验证和验收 - `06-verity`
 ```
 
 每完成一个阶段，都要更新 `todo.md` 中对应任务的状态。
@@ -100,15 +106,15 @@ workflow:
 | 阶段 | Skill | 作用 | 主要产物 |
 | --- | --- | --- | --- |
 | 赛题分析与建模设计 | `02-analysis-modeling` | 解析题意、识别变量/约束/数据/评价指标，并建立数学模型、目标函数、约束条件和求解策略。 | `ANALYSIS_MODELING_REPORT.md` |
-| 编程实现和图表生成 | `03-coding-visual` | 实现可复现代码，运行实验，生成结果表和多种多样的图表。 | `code/`, `results/` ,  `RESULTS_REPORT.md`, `figures/图表` |
+| 编程实现和图表生成 | `03-coding` | 实现可复现代码，运行实验，生成结果表和多种多样的图表。 | `code/`, `results/` ,  `RESULTS_REPORT.md`, `figures/图表` |
 | 流程与架构图绘制 | `04-drawio` | 在论文确实需要时，绘制方法流程图、架构图和非数据型概念图。 | `figures/*.drawio`, `figures/*.pdf`, `DRAWIO_REPORT.md` |
 | 竞赛论文撰写 | `05-writing` | 基于分析、建模、代码结果和图表撰写最终竞赛论文，并按章节直接插入图表。 | `paper/` |
 | 验证和验收 | `06-verity` | 检查可复现性、一致性、产物完整性、格式规范和提交就绪状态。 | `VERIFY_REPORT.md` |
 
 ## 阶段边界
 
-- `03-coding-visual` 负责生成所有依赖计算结果或实验输出的数据图表。
+- `03-coding` 负责生成所有依赖计算结果或实验输出的数据图表。
 - `04-drawio` 只负责概念图、算法流程图、架构图、路线图等非数据型图示。
-- 不要让 `04-drawio` 重复绘制 `03-coding-visual` 已经生成的统计图或数据图。
+- 不要让 `04-drawio` 重复绘制 `03-coding` 已经生成的统计图或数据图。
 - `05-writing` 负责决定图表在论文中的位置，并直接写入 `#figure(image(...), caption: [...])`。
 - 不要让 `05-writing` 编造数值结论。论文中的数值必须来自 `RESULTS_REPORT.md`、结果表或已生成图表的数据。

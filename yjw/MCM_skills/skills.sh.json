@@ -16,8 +16,8 @@
     },
     {
       "step": 3,
-      "skill": "03-coding-visual",
-      "path": "subskills/03-coding-visual"
+      "skill": "03-coding",
+      "path": "subskills/03-coding"
     },
     {
       "step": 4,

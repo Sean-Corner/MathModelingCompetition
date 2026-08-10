@@ -6,7 +6,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 # 竞赛论文撰写skill
 
-本 skill 承接 `03-coding-visual` 和 `04-drawio`。前序阶段只提供真实数据、图表 PDF 和记录文件；本阶段负责选择比赛模板、组织论文结构，并决定每张图表放入哪个章节。
+本 skill 承接 `03-coding` 和 `04-drawio`。前序阶段只提供真实数据、图表 PDF 和记录文件；本阶段负责选择比赛模板、组织论文结构，并决定每张图表放入哪个章节。
 
 ## 数学建模规范参考
 

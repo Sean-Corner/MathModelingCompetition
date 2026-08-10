@@ -6,7 +6,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 # DrawIO 非数据图示绘制
 
-本 skill 承接 `03-coding-visual`。它只负责论文中的**非数据型图示的草稿版本**，例如技术路线图、求解流程图、模型结构图、数据处理流程图、变量关系图、指标体系图等。
+本 skill 承接 `03-coding`。它只负责论文中的**非数据型图示的草稿版本**，例如技术路线图、求解流程图、模型结构图、数据处理流程图、变量关系图、指标体系图等。
 本skill生成的图都是草稿，不可作为最终版本。
 ## 数学建模规范参考
 
@@ -15,7 +15,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 ## 阶段边界
 
 - 本阶段负责：DrawIO 源文件、非数据图 PDF、图示生成记录。
-- 本阶段不负责：折线图、柱状图、散点图、热力图、箱线图、雷达图等数据图。这些由 `03-coding-visual` 生成。
+- 本阶段不负责：折线图、柱状图、散点图、热力图、箱线图、雷达图等数据图。这些由 `03-coding` 生成。
 - 本阶段不重跑模型、不修改 `code/`，不改写 `reports/RESULTS_REPORT.md` 的数值结论。
 
 ## 必须产出
@@ -134,7 +134,7 @@ fi
 - 箭头不穿过核心节点。
 - 字号、颜色、边框风格一致。
 - 文件名和图意一致。
-- 没有与 `03-coding-visual` 的数据图重复。
+- 没有与 `03-coding` 的数据图重复。
 
 发现问题要修 `.drawio` 并重新导出，不要只在报告里解释。
 

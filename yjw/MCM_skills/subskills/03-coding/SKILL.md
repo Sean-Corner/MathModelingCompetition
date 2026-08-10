@@ -1,5 +1,5 @@
 ---
-name: 03-coding-visual
+name: 03-coding
 description: "数学建模编程实现与数据图表草稿生成阶段。根据 ANALYSIS_MODELING_REPORT.md 编写可复现代码、运行求解、验证约束、输出 RESULTS_REPORT.md 并生成论文可用的数据驱动图表 PDF。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
@@ -25,10 +25,8 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 按 `plan.md` 中"项目目录结构"创建 `code/` 和 `figures/` 骨架，再开始写代码。子问题数不一定是 3，按赛题实际数量调整。
 
-大多数情况下，可以用python写程序求解。但python执行效率过低，而数学建模竞赛本身对编程语言又无要求，因此当所用算法的时间复杂度较高，而使用C++、Java、C#中的任意一种写代码又完全可行时，必须使用C++、Java、C#中的任意一种写代码！
-
-使用C++、Java、C#中的任意一种写代码的弊端在于这几种语言的生态远不如python完善，因此在选择编程语言时应充分考虑这点。如果用python，必须评估程序运行耗时，若超过半小时且使用C++、Java、C#等执行效率更高的语言完全可行，则必须换语言！
-写代码解题时必须力求结果的精准正确，严禁为了降低代码执行时间而不严谨设定参数！严禁牺牲质量换效率！
+大多数情况下，可以用python写程序求解。但python执行效率过低。如果用python，必须评估程序运行耗时，若超过半小时且使用C++、Java、C#等执行效率更高的语言完全可行，则必须向用户报告情况并提供若干选项供用户选择！
+写代码解题时必须力求算法和结果的精准正确，严禁为了降低代码执行时间而不严谨设定参数！严禁牺牲质量换效率！
 
 制图这种时间复杂度不高且使用python生态可减轻工作强度的工作可以使用python。
 
