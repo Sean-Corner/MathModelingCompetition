@@ -14,12 +14,8 @@ allowed-tools: Bash(*), Read, Write
 
 | 工具 | 用途 | 检测命令 |
 | --- | --- | --- |
-| `typst` | 论文编译（05-writing、06-verity） | `command -v typst` |
 | `python3` | 数值计算与图表（03-coding-visual） | `command -v python3` |
-| `drawio` / `draw.io` | DrawIO 流程图导出 PDF（04-drawio） | `command -v drawio \|\| command -v draw.io` |
-| `pdftoppm` | PDF 转 PNG 视觉检查（06-verity） | `command -v pdftoppm` |
-| `mutool` | PDF 转 PNG 备用（06-verity） | `command -v mutool` |
-| `magick` | PDF 转 PNG 备用（06-verity） | `command -v magick` |
+| `drawio` / `draw.io` | DrawIO 流程图导出 PNG（04-drawio） | `command -v drawio \|\| command -v draw.io` |
 
 ### Python 包
 
@@ -71,13 +67,9 @@ check_cmd() {
   fi
 }
 
-check_cmd typst
 check_cmd python3 || check_cmd python   # Windows 上可能是 python
 command -v drawio >/dev/null 2>&1 || command -v draw.io >/dev/null 2>&1 \
   && echo "OK  drawio" || echo "MISS drawio"
-check_cmd pdftoppm
-check_cmd mutool
-check_cmd magick
 
 python3 - <<'PYEOF'
 import importlib
@@ -103,30 +95,19 @@ PYEOF
 ```
 状态   工具/包              说明
 ----   --------             ----
-✓      typst 0.13.0         论文编译
-✗      drawio               DrawIO 导出 PDF（可选）
 ✓      python3 3.11.x       数值计算
+✗      drawio               DrawIO 导出 PNG（可选）
+✓      numpy 1.26.x         数值计算
 ✗      scipy                科学计算（可选）
 ...
 ```
 
-**必须项：** typst、python3、numpy、pandas、matplotlib  
-**可选项：** drawio、pdftoppm/mutool/magick 三选一、scipy、scikit-learn、openpyxl
+**必须项：** python3、numpy、pandas、matplotlib  
+**可选项：** drawio、scipy、scikit-learn、openpyxl
 
 ### Step 4：提供安装命令（按平台）
 
 仅对缺失项输出对应平台的命令。
-
-#### typst
-
-| 平台 | 命令 |
-| --- | --- |
-| macOS | `brew install typst` |
-| Linux (apt) | `snap install typst` 或从 GitHub Releases 下载二进制 |
-| Linux (arch) | `pacman -S typst` |
-| Windows (winget) | `winget install Typst.Typst` |
-| Windows (scoop) | `scoop install typst` |
-| 通用 | `cargo install --locked typst-cli`（需要 Rust） |
 
 #### Python 3
 
@@ -153,32 +134,6 @@ pip3 install <缺失的包>
 | Linux | 从 https://github.com/jgraph/drawio-desktop/releases 下载 AppImage 或 deb |
 | Windows | `winget install JGraph.Draw` 或从上述页面下载安装包 |
 
-#### pdftoppm（来自 poppler）
-
-| 平台 | 命令 |
-| --- | --- |
-| macOS | `brew install poppler` |
-| Linux (apt) | `sudo apt install poppler-utils` |
-| Linux (dnf) | `sudo dnf install poppler-utils` |
-| Windows | `winget install oschwartz10612.poppler` 或 `scoop install poppler` |
-
-#### mutool（来自 mupdf）
-
-| 平台 | 命令 |
-| --- | --- |
-| macOS | `brew install mupdf` |
-| Linux (apt) | `sudo apt install mupdf-tools` |
-| Windows | `scoop install mupdf` 或从 mupdf.com 下载 |
-
-#### ImageMagick
-
-| 平台 | 命令 |
-| --- | --- |
-| macOS | `brew install imagemagick` |
-| Linux (apt) | `sudo apt install imagemagick` |
-| Linux (dnf) | `sudo dnf install imagemagick` |
-| Windows | `winget install ImageMagick.ImageMagick` 或 `choco install imagemagick` |
-
 ### Step 5：询问用户是否安装
 
 列出所有缺失的**必须项**后，询问用户：
@@ -193,16 +148,16 @@ pip3 install <缺失的包>
 
 ```
 Doctor 检查完成（macOS）
-必须项：5/5 ✓
+必须项：4/4 ✓
 可选项：2/4（drawio、scipy 缺失）
 
 工作流就绪状态：
   01-start-mathmodel   ✓
   02-analysis-modeling ✓
   03-coding-visual     ✓（scipy 缺失，部分功能受限）
-  04-drawio            ⚠ drawio 未安装，PDF 导出将跳过
+  04-drawio            ⚠ drawio 未安装，PNG 导出将跳过
   05-writing           ✓
-  06-verity            ⚠ 无 PDF 转 PNG 工具，视觉检查将跳过
+  06-verity            ✓（文档视觉检查需人工打开 Word/md 确认）
 ```
 
 ## 注意事项
@@ -210,5 +165,5 @@ Doctor 检查完成（macOS）
 - 执行安装前必须获得用户明确确认，不得静默安装。
 - Windows 下建议在 PowerShell（管理员）或 Git Bash 中运行，部分命令需要管理员权限。
 - Linux 的 `sudo` 命令会请求密码，执行前告知用户。
-- drawio 和 PDF 转 PNG 工具缺失不影响核心工作流，仅影响导出质量。
+- drawio 缺失不影响核心工作流，仅影响非数据图导出质量。
 - 如平台检测为 unknown，打印所有平台命令供用户手动选择。

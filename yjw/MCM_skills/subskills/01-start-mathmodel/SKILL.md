@@ -69,11 +69,11 @@ step skills
 │   └── utils.py
 ├── results/                     # 2: 结果记录（03-coding-visual）
 ├── figures/                     # 2+3: 所有图表（03-coding-visual + 04-drawio）
-│   ├── *.pdf                    #     数据图 + 非数据图 PDF
+│   ├── *.png                    #     数据图 + 非数据图 PNG
 │   ├── *.drawio                 #     非数据图源文件
-├── paper/                       # 4: 论文（05-writing）
-│   ├── main.typ              #     论文主文件
-│   └── sections/            #     各节 typ 文件
+├── paper/                       # 4: 论文（05-writing / 07-graph-optimization）
+│   ├── 竞赛论文(草稿).md        #     论文 md 正文（05 输出）
+│   └── 竞赛论文.docx            #     论文 Word 终稿（07 输出）
 ```
 
 方案必须明确每个阶段由哪个下游 skill 负责，以及该阶段应产出什么文件。
@@ -107,7 +107,7 @@ step skills
 | --- | --- | --- | --- |
 | 赛题分析与建模设计 | `02-analysis-modeling` | 解析题意、识别变量/约束/数据/评价指标，并建立数学模型、目标函数、约束条件和求解策略。 | `ANALYSIS_MODELING_REPORT.md` |
 | 编程实现和图表生成 | `03-coding` | 实现可复现代码，运行实验，生成结果表和多种多样的图表。 | `code/`, `results/` ,  `RESULTS_REPORT.md`, `figures/图表` |
-| 流程与架构图绘制 | `04-drawio` | 在论文确实需要时，绘制方法流程图、架构图和非数据型概念图。 | `figures/*.drawio`, `figures/*.pdf`, `DRAWIO_REPORT.md` |
+| 流程与架构图绘制 | `04-drawio` | 在论文确实需要时，绘制方法流程图、架构图和非数据型概念图。 | `figures/*.drawio`, `figures/*.png`, `DRAWIO_REPORT.md` |
 | 竞赛论文撰写 | `05-writing` | 基于分析、建模、代码结果和图表撰写最终竞赛论文，并按章节直接插入图表。 | `paper/` |
 | 验证和验收 | `06-verity` | 检查可复现性、一致性、产物完整性、格式规范和提交就绪状态。 | `VERIFY_REPORT.md` |
 
@@ -116,5 +116,5 @@ step skills
 - `03-coding` 负责生成所有依赖计算结果或实验输出的数据图表。
 - `04-drawio` 只负责概念图、算法流程图、架构图、路线图等非数据型图示。
 - 不要让 `04-drawio` 重复绘制 `03-coding` 已经生成的统计图或数据图。
-- `05-writing` 负责决定图表在论文中的位置，并直接写入 `#figure(image(...), caption: [...])`。
+- `05-writing` 负责决定图表在论文中的位置，并在 md 正文中以 `![](figures/...)` 语法标记图片文件名。
 - 不要让 `05-writing` 编造数值结论。论文中的数值必须来自 `RESULTS_REPORT.md`、结果表或已生成图表的数据。

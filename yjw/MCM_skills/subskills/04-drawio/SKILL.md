@@ -1,6 +1,6 @@
 ---
 name: 04-drawio
-description: "数学建模非数据型图示草稿绘制阶段。根据 ANALYSIS_MODELING_REPORT.md、RESULTS_REPORT.md 和已有 figures/ 生成技术路线图、子问题求解流程图、模型结构图、数据处理流程图等 DrawIO 图，并导出论文可引用 PDF。"
+description: "数学建模非数据型图示草稿绘制阶段。根据 ANALYSIS_MODELING_REPORT.md、RESULTS_REPORT.md 和已有 figures/ 生成技术路线图、子问题求解流程图、模型结构图、数据处理流程图等 DrawIO 图，并导出论文可引用 PNG。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
@@ -14,7 +14,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 ## 阶段边界
 
-- 本阶段负责：DrawIO 源文件、非数据图 PDF、图示生成记录。
+- 本阶段负责：DrawIO 源文件、非数据图 PNG、图示生成记录。
 - 本阶段不负责：折线图、柱状图、散点图、热力图、箱线图、雷达图等数据图。这些由 `03-coding` 生成。
 - 本阶段不重跑模型、不修改 `code/`，不改写 `reports/RESULTS_REPORT.md` 的数值结论。
 
@@ -25,9 +25,9 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 ```text
 figures/
   fig_roadmap.drawio
-  fig_roadmap.pdf
+  fig_roadmap.png
   fig_flow_q1.drawio
-  fig_flow_q1.pdf
+  fig_flow_q1.png
   ...
 reports/DRAWIO_REPORT.md
 ```
@@ -109,27 +109,27 @@ cat << 'XMLEOF' > figures/fig_roadmap.drawio
 XMLEOF
 ```
 
-### Step 4: 导出 PDF
+### Step 4: 导出 PNG
 
-优先用可用的 DrawIO 命令导出 PDF：
+优先用可用的 DrawIO 命令导出 PNG：
 
 ```bash
 DRAWIO_BIN="$(command -v drawio 2>/dev/null || command -v draw.io 2>/dev/null || command -v draw.io.exe 2>/dev/null || true)"
 if [ -n "$DRAWIO_BIN" ]; then
-  "$DRAWIO_BIN" --export --format pdf --crop --output figures/fig_roadmap.pdf figures/fig_roadmap.drawio
+  "$DRAWIO_BIN" --export --format png --scale 2 --output figures/fig_roadmap.png figures/fig_roadmap.drawio
 else
   echo "DrawIO command not found; keep .drawio source and record export failure."
 fi
 ```
 
-如果无法导出 PDF，保留 `.drawio`，在 `reports/DRAWIO_REPORT.md` 记录失败原因和建议导出命令。
+如果无法导出 PNG，保留 `.drawio`，在 `reports/DRAWIO_REPORT.md` 记录失败原因和建议导出命令。
 
 ### Step 5: 自检和修复
 
 每张图必须检查：
 
 - `.drawio` 文件非空。
-- 若导出成功，`.pdf` 文件非空。
+- 若导出成功，`.png` 文件非空。
 - 节点没有明显重叠。
 - 箭头不穿过核心节点。
 - 字号、颜色、边框风格一致。
@@ -156,11 +156,11 @@ fi
 ## 给论文阶段的嵌入建议
 ```
 
-嵌入建议只说明每张图适合放入哪个章节和建议 caption，不生成 `*_typst_includes.typ`。最终的 `#figure(image(...), caption: [...])` 由 `05-writing` 根据论文结构决定。
+嵌入建议只说明每张图适合放入哪个章节和建议 caption，不生成独立的图片引用文件。最终图片以 md 语法 `![](figures/...)` 插入，具体位置由 `05-writing` 根据论文结构决定。
 
 ## 质量要求
 
 - 图示服务论文论证，不为装饰而画。
 - 每张图必须能对应到`reports/ANALYSIS_MODELING_REPORT.md` 中的真实方法。
 - 数据型图表不得在本阶段重复生成。
-- 论文阶段引用的非数据图都应有 `.drawio` 源文件和 PDF，或者在 `reports/DRAWIO_REPORT.md` 说明导出失败。
+- 论文阶段引用的非数据图都应有 `.drawio` 源文件和 PNG，或者在 `reports/DRAWIO_REPORT.md` 说明导出失败。

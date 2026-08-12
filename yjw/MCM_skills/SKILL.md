@@ -1,6 +1,6 @@
 ---
 name: math-modeling
-description: "数学建模竞赛全流程 Skill。用于需要完成赛题分析、数学建模、代码求解、草稿数据图、DrawIO 非数据图、Typst 论文撰写、可选 AntV 高保真图表升级、最终验证和提交检查的任务；触发 Math Modeling 后按内置子 skill 工作流编排执行。"
+description: "数学建模竞赛全流程 Skill。用于需要完成赛题分析、数学建模、代码求解、草稿数据图、DrawIO 非数据图、论文撰写（md/Word）、可选 AntV 高保真图表升级、最终验证和提交检查的任务；触发 Math Modeling 后按内置子 skill 工作流编排执行。"
 ---
 
 # Math Modeling
@@ -16,8 +16,8 @@ description: "数学建模竞赛全流程 Skill。用于需要完成赛题分析
 | 0 | `doctor`                | 手动触发的环境检查与安装向导。                                                                                                            | 依赖检查结果                                                      |
 | 1 | `01-start-mathmodel`    | 启动工作流，记录偏好，生成整体计划。                                                                                                      | `plan.md`, `todo.md`                                              |
 | 2 | `02-analysis-modeling`  | 解析题目、拆解子问题、建立模型和求解方案。                                                                                                | `reports/ANALYSIS_MODELING_REPORT.md`                             |
-| 3 | `03-coding`             | 实现代码、运行实验、保存结果，并生成**草稿版**数据图（matplotlib / seaborn 等探索用图）。                                                 | `code/`, `results/`, `reports/RESULTS_REPORT.md`, `figures/*.pdf` |
-| 4 | `04-drawio`             | 绘制技术路线图、流程图、模型结构图等非数据图的草稿。                                                                                      | `figures/*.drawio`, `figures/*.pdf`, `reports/DRAWIO_REPORT.md`   |
+| 3 | `03-coding`             | 实现代码、运行实验、保存结果，并生成**草稿版**数据图（matplotlib / seaborn 等探索用图）。                                                 | `code/`, `results/`, `reports/RESULTS_REPORT.md`, `figures/*.png` |
+| 4 | `04-drawio`             | 绘制技术路线图、流程图、模型结构图等非数据图的草稿。                                                                                      | `figures/*.drawio`, `figures/*.png`, `reports/DRAWIO_REPORT.md`   |
 | 5 | `05-writing`            | 撰写竞赛论文**草稿**，引用 03/04 草稿图。                                                                                                 | `paper/竞赛论文(草稿).md`                                         |
 | 6 | `06-verity`             | 验证**草稿版**论文、图表、数值、代码复现和提交状态。                                                                                      | `reports/VERIFY_REPORT.md`                                        |
 | 7 | `07-graph-optimization` | 图表升级，把前序子skill生成的草稿图升级为论文级高质量版本（统计图 / 网络图 / 流程图 / 表格 全栈），将图插入论文正文并导出成论文word文件。 | `paper/竞赛论文.docx`                                             |
@@ -54,6 +54,7 @@ description: "数学建模竞赛全流程 Skill。用于需要完成赛题分析
 ├── figures/                       # 03/04 草稿图
 │   └── antv/                      # 07 AntV 高质量图
 └── paper/
-    ├── 竞赛论文(草稿).md          # 05 输出
-    └── 竞赛论文.md                # 07 输出（终稿，覆盖草稿）
+    ├── 竞赛论文(草稿).md          # 05 输出（md 正文）
+    ├── 竞赛论文.md                # 07 输出（更新图表后的 md 终稿）
+    └── 竞赛论文.docx              # 07 输出（Word 终稿）
 ```

@@ -44,10 +44,6 @@
     {
       "skill": "doctor",
       "path": "subskills/doctor"
-    },
-    {
-      "skill": "typst-author",
-      "path": "subskills/typst-author"
     }
   ],
   "resources": {

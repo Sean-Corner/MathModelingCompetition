@@ -1,6 +1,6 @@
 ---
 name: 03-coding
-description: "数学建模编程实现与数据图表草稿生成阶段。根据 ANALYSIS_MODELING_REPORT.md 编写可复现代码、运行求解、验证约束、输出 RESULTS_REPORT.md 并生成论文可用的数据驱动图表 PDF。"
+description: "数学建模编程实现与数据图表草稿生成阶段。根据 ANALYSIS_MODELING_REPORT.md 编写可复现代码、运行求解、验证约束、输出 RESULTS_REPORT.md 并生成论文可用的数据驱动图表 PNG。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
@@ -25,7 +25,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 按 `plan.md` 中"项目目录结构"创建 `code/` 和 `figures/` 骨架，再开始写代码。子问题数不一定是 3，按赛题实际数量调整。
 
-大多数情况下，可以用python写程序求解。但python执行效率过低。如果用python，必须评估程序运行耗时，若超过半小时且使用C++、Java、C#等执行效率更高的语言完全可行，则必须向用户报告情况并提供若干选项供用户选择！
+大多数情况下，可以用python写程序求解。但python执行效率过低。如果用python，必须评估程序运行耗时，若超过半小时且使用C++、Java、C#、JavaScript、TypeScript等执行效率更高的语言完全可行，则必须向用户报告情况并让用户选择使用哪种技术方案！
 写代码解题时必须力求算法和结果的精准正确，严禁为了降低代码执行时间而不严谨设定参数！严禁牺牲质量换效率！
 
 制图这种时间复杂度不高且使用python生态可减轻工作强度的工作可以使用python。
@@ -70,7 +70,7 @@ AI 在实现、求解和作图过程中，必须把关键中间过程保存成�
 
 ### Step 4: 生成数据驱动图表
 
-根据 `reports/ANALYSIS_MODELING_REPORT.md` 和 `reports/RESULTS_REPORT.md` 规划图表，生成 PDF 到 `figures/`。
+根据 `reports/ANALYSIS_MODELING_REPORT.md` 和 `reports/RESULTS_REPORT.md` 规划图表，生成 PNG 到 `figures/`。
 
 典型图表：
 
@@ -81,8 +81,8 @@ AI 在实现、求解和作图过程中，必须把关键中间过程保存成�
 
 图表要求：
 
-- PDF 矢量输出，适合论文。
-- 不在图内写大标题，标题交给 Typst caption。
+- PNG 输出（≥300 DPI），适合嵌入 Word。
+- 不在图内写大标题，标题由论文正文/图题呈现。
 - 中文论文图表使用中文坐标轴和图例；英文论文使用英文。
 - 不生成流程图/架构图/路线图。
 

@@ -1,11 +1,11 @@
 ---
 name: 07-graph-optimization
-description: "数学建模工作流的图表升级节点。读取 03-coding-visual 与 04-drawio 的草稿图，按图表类型自动路由到 antv-g2-chart / antv-g6-graph / antv-x6-editor / antv-s2-expert，重新出论文级 PDF 高保真图表，并替换 paper/竞赛论文.pdf 中的图表引用。在 06-verity 通过后手动或自动触发，不重跑模型、不改数值。"
+description: "数学建模工作流的图表升级节点。读取 03-coding-visual 与 04-drawio 的草稿图，按图表类型自动路由到 antv-g2-chart / antv-g6-graph / antv-x6-editor / antv-s2-expert，重新出论文级 PNG 高保真图表，并替换 paper/竞赛论文.md 中的图表引用。在 06-verity 通过后手动或自动触发，不重跑模型、不改数值。"
 ---
 
 # 07-antv
 
-本 skill 是数模工作流的**图表升级节点**，对应顶层 `SKILL.md` 中第 7 步。它把草稿图（`figures/*.pdf`、`figures/*.drawio`）重画成论文级高保真版本，统一收口到 `figures/antv/`，再回写终稿 `paper/竞赛论文.pdf`。
+本 skill 是数模工作流的**图表升级节点**，对应顶层 `SKILL.md` 中第 7 步。它把草稿图（`figures/*.png`、`figures/*.drawio`）重画成论文级高保真版本，统一收口到 `figures/antv/`，再回写终稿 `paper/竞赛论文.md`，并导出 `paper/竞赛论文.docx`。
 
 **职责边界**：只换"皮"，不重算"数"，不修改已撰写好的论文正文。任何对数据/模型的修改都属于上游 02/03 步骤，07 不接受。
 
@@ -21,7 +21,7 @@ description: "数学建模工作流的图表升级节点。读取 03-coding-visu
 
 | 来源 | 路径                                               | 用途                              |
 | --- |----------------------------------------------------|-----------------------------------|
-| 草稿数据图 | `figures/*.pdf` + 对应 `results/*.csv`（如可追溯） | 重新出统计图                      |
+| 草稿数据图 | `figures/*.png` + 对应 `results/*.csv`（如可追溯） | 重新出统计图                      |
 | 草稿非数据图 | `figures/*.drawio` 或等价 JSON 描述                | 重新出流程 / 架构图               |
 | 数值结论 | `reports/RESULTS_REPORT.md`                        | 校验图表数据一致                  |
 | 草稿论文 | `paper/竞赛论文(草稿).md`               | 供本子skill生成最终版论文word文件 |
@@ -30,7 +30,7 @@ description: "数学建模工作流的图表升级节点。读取 03-coding-visu
 
 | 产物                  | 路径                     | 说明                                                          |
 |-----------------------|--------------------------|---------------------------------------------------------------|
-| AntV 高质量论文级别图 | `figures/antv/*.pdf`     | 终稿用图，300 DPI                                             |
+| AntV 高质量论文级别图 | `figures/antv/*.png`     | 终稿用图，300 DPI                                             |
 | AntV 工作日志         | `reports/ANTV_REPORT.md` | 每张图的输入数据、模板、配色、ANTV 子 skill 名                |
 | 终稿论文              | `paper/竞赛论文.docx`    | 将本skill生成的高质量论文级图插入论文正文后导出的论文word文件 |
 
@@ -129,13 +129,13 @@ description: "数学建模工作流的图表升级节点。读取 03-coding-visu
 
 ### 5.1 标准流程
 
-1. **读数据**：从 `results/*.csv` 或 `figures/*.pdf` 反推数据表（OCR 不靠谱时优先找原 CSV）。
+1. **读数据**：从 `results/*.csv` 或 `figures/*.png` 反推数据表（OCR 不靠谱时优先找原 CSV）。
 2. **选模板**：查 §3 路由表 → 选定 antv 子 skill。
 3. **应用配色**：按 §4 主色板配置 `scale.color.range` 或 `node.style.fill`，**禁止**把 hex 写在数据字段里（参考 G2 约束 #17）。
 4. **加标注**：标题、轴标签、图例、数据来源。
-5. **导出 PDF**：保存到 `figures/antv/<原草稿名>.pdf`，300 DPI，矢量优先。
+5. **导出 PNG**：保存到 `figures/antv/<原草稿名>.png`，300 DPI。
 6. **登记日志**：在 `reports/ANTV_REPORT.md` 写一行（格式见 §6）。
-7. **替换引用**：在终稿 `.typ`（或 `.tex`）中把 `figures/<name>.pdf` 替换为 `figures/antv/<name>.pdf`。
+7. **替换引用**：在终稿 md 中把 `figures/<name>.png` 替换为 `figures/antv/<name>.png`。
 
 ### 5.2 调用示例（伪代码）
 
@@ -146,7 +146,7 @@ g2:
   input: results/sensitivity.csv  (x=param, y1=score, y2=baseline)
   mark: type: 'view' + children: [line(y1), line(y2, dash)]
   palette: [primary, accent]
-  output: figures/antv/sensitivity.pdf
+  output: figures/antv/sensitivity.png
 
 # 例子 2：模型结构图
 x6:
@@ -154,7 +154,7 @@ x6:
   input: figures/draft/model_arch.drawio → 解析为 nodes/edges JSON
   layout: 3 层水平（输入层 / 隐藏层 / 输出层）
   palette: [primary, secondary, accent]
-  output: figures/antv/model_arch.pdf
+  output: figures/antv/model_arch.png
 
 # 例子 3：参数对照表
 s2:
@@ -162,7 +162,7 @@ s2:
   input: results/param_sweep.csv (pivot on algorithm × metric)
   sheet: PivotSheet
   palette: 表头 primary, 数值列 zebra
-  output: figures/antv/param_table.pdf
+  output: figures/antv/param_table.png
 ```
 
 ### 5.3 各子 skill 的强约束速查
@@ -185,9 +185,9 @@ s2:
 
 | # | 原草稿 | 图表类型 | AntV 子 skill | 输入数据 | 输出文件 | 配色 | 备注 |
 |---|--------|----------|---------------|----------|----------|------|------|
-| 1 | figures/sensitivity.pdf | 折线图 | antv-g2-chart | results/sensitivity.csv | figures/antv/sensitivity.pdf | [primary, accent] | 多系列，含基线 |
-| 2 | figures/model_arch.drawio | 架构图 | antv-x6-editor | drawio 解析 → 3 层节点 | figures/antv/model_arch.pdf | [primary, secondary, accent] | 输入/隐藏/输出 |
-| 3 | figures/param_table.pdf | 透视表 | antv-s2-expert | results/param_sweep.csv | figures/antv/param_table.pdf | primary 表头 | 算法 × 指标 |
+| 1 | figures/sensitivity.png | 折线图 | antv-g2-chart | results/sensitivity.csv | figures/antv/sensitivity.png | [primary, accent] | 多系列，含基线 |
+| 2 | figures/model_arch.drawio | 架构图 | antv-x6-editor | drawio 解析 → 3 层节点 | figures/antv/model_arch.png | [primary, secondary, accent] | 输入/隐藏/输出 |
+| 3 | figures/param_table.png | 透视表 | antv-s2-expert | results/param_sweep.csv | figures/antv/param_table.png | primary 表头 | 算法 × 指标 |
 ```
 
 ---
@@ -199,7 +199,7 @@ s2:
 ### 7.1 文件级
 
 - [ ] **论文word文件可读**：`paper/竞赛论文.docx` 能正常打开，无乱码、无缺字符；文件大小合理。
-- [ ] **图表替换完整**：草稿论文中的 `figures/*.pdf` 引用**全部**替换为 `figures/antv/*.pdf`，无遗漏（用 `grep` 在 `.typ` / `.tex` 里搜一遍旧路径，应返回 0 行）。
+- [ ] **图表替换完整**：草稿论文中的 `figures/*.png` 引用**全部**替换为 `figures/antv/*.png`，无遗漏（用 `grep` 在 md 里搜一遍旧路径，应返回 0 行）。
 - [ ] **文件名映射**：`reports/ANTV_REPORT.md` 中每张图都有对应条目。
 
 ### 7.2 数据级
@@ -212,7 +212,7 @@ s2:
 
 - [ ] **配色合规**：主色 ≤ 4 种；无 3D、无渐变背景；中文字体生效（抽 1 张放大看）。
 - [ ] **编号连贯**：图 1, 图 2, ... 在终稿中按出现顺序编号，与 `ANTV_REPORT.md` 索引一致。
-- [ ] **黑白可读**：把 PDF 转灰度看，主要信息（折线、柱、节点）仍可区分。
+- [ ] **黑白可读**：把 PNG 转灰度看，主要信息（折线、柱、节点）仍可区分。
 
 ### 7.4 流程级
 
@@ -226,9 +226,9 @@ s2:
 
 | 现象 | 处理 |
 | --- | --- |
-| AntV 子 skill 渲染失败（语法 / 数据格式错） | 重试 1 次；仍失败则降级用 matplotlib/seaborn 重出，文件名 `figures/antv/<name>.fallback.pdf`，在 `ANTV_REPORT.md` 注明 fallback 原因 |
+| AntV 子 skill 渲染失败（语法 / 数据格式错） | 重试 1 次；仍失败则降级用 matplotlib/seaborn 重出，文件名 `figures/antv/<name>.fallback.png`，在 `ANTV_REPORT.md` 注明 fallback 原因 |
 | 数据与 `RESULTS_REPORT.md` 不一致 | **不要强行修图**——回退到 03/02 修数据，重跑后再升级 |
-| 终稿 PDF 缺页或图裂 | 检查 Typst / LaTeX 编译日志；确认图片路径正确、文件存在 |
+| 终稿 Word 缺图或图裂 | 确认图片路径正确、文件存在，重新导出 Word |
 | 草稿论文引用了 antv 没覆盖的图（如 3D 模型截图、PS 出图） | 留在 `figures/` 不动，在终稿论文中标注"草稿图"或"示意图" |
 | AntV 子 skill 出了幻觉 mark 类型 | 立刻停止，回查对应上游 SKILL.md 的"合法 mark 列表"小节，重写配置 |
 | 配色不满足 §4 规则 | 重出，**不要** 提交带违规配色的终稿 |
@@ -251,4 +251,4 @@ s2:
 ## 10. 与上层 SKILL.md 的衔接
 
 - 上层 `SKILL.md` 在"工作流规则"里写了"双轨图表"和"AntV 路由"两条硬规则，本文件是它们的落地实现。
-- 上层 `SKILL.md` 的产物结构里 `figures/antv/`、`reports/ANTV_REPORT.md`、`paper/竞赛论文.docx` 三项由本 skill 产出；其他文件不要在本 skill 里改动。
+- 上层 `SKILL.md` 的产物结构里 `figures/antv/`、`reports/ANTV_REPORT.md`、`paper/竞赛论文.md`、`paper/竞赛论文.docx` 由本 skill 产出；其他文件不要在本 skill 里改动。

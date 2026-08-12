@@ -6,7 +6,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 # 竞赛论文撰写skill
 
-本 skill 承接 `03-coding` 和 `04-drawio`。前序阶段只提供真实数据、图表 PDF 和记录文件；本阶段负责选择比赛模板、组织论文结构，并决定每张图表放入哪个章节。
+本 skill 承接 `03-coding` 和 `04-drawio`。前序阶段只提供真实数据、图表 PNG 和记录文件；本阶段负责选择比赛模板、组织论文结构，并决定每张图表放入哪个章节。
 
 ## 数学建模规范参考
 
@@ -18,14 +18,14 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 ### 步骤 1：构建图表规划
 
-在写正文各节之前，根据 `figures/*.pdf`、`reports/RESULTS_REPORT.md`，以及 `reports/DRAWIO_REPORT.md`（如果存在）构建图表规划：
+在写正文各节之前，根据 `figures/*.png`、`reports/RESULTS_REPORT.md`，以及 `reports/DRAWIO_REPORT.md`（如果存在）构建图表规划：
 
 ```text
 图表规划
-fig_roadmap.pdf -> 引言/问题重述
-fig_flow_q1.pdf -> 问题一模型构建
-fig_flow_q2.pdf -> 问题二模型构建
-fig_pipeline.pdf -> 数据预处理/方法节
+fig_roadmap.png -> 引言/问题重述
+fig_flow_q1.png -> 问题一模型构建
+fig_flow_q2.png -> 问题二模型构建
+fig_pipeline.png -> 数据预处理/方法节
 结果图 -> 对应的结果节
 ```
 
