@@ -1,0 +1,130 @@
+% Compile with XeLaTeX (prefer: latexmk -xelatex paper.tex)
+\documentclass[UTF8,a4paper,zihao=5,fontset=none]{ctexart}
+
+% ---------- Page and typography ----------
+\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,
+            headheight=14pt,footskip=1.25cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\IfFontExistsTF{SimSun}{
+  \setCJKmainfont{SimSun}[BoldFont=SimHei,ItalicFont=KaiTi]
+  \setCJKsansfont{SimHei}
+  \setCJKmonofont{FangSong}
+}{
+  \setCJKmainfont{FandolSong-Regular}[BoldFont=FandolSong-Bold,ItalicFont=FandolKai-Regular]
+  \setCJKsansfont{FandolHei-Regular}[BoldFont=FandolHei-Bold]
+  \setCJKmonofont{FandolFang-Regular}
+}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+\IfFontExistsTF{Arial}{\setsansfont{Arial}}{\setsansfont{TeX Gyre Heros}}
+\IfFontExistsTF{Consolas}{\setmonofont{Consolas}}{\setmonofont{Latin Modern Mono}}
+\newcommand{\songtirole}{\CJKfamily{rm}}
+\newcommand{\heitirole}{\CJKfamily{sf}}
+\linespread{1.25}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+
+% ---------- Mathematics and units ----------
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{siunitx}
+\sisetup{detect-all,per-mode=symbol,range-phrase=--,range-units=single}
+\allowdisplaybreaks[2]
+\renewcommand{\theequation}{\arabic{equation}}
+
+% ---------- Figures, tables, lists ----------
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,longtable,multirow,threeparttable,adjustbox}
+\usepackage{caption}
+\usepackage{float,placeins}
+\usepackage{enumitem}
+\usepackage{fvextra}
+\captionsetup{font={small},labelfont=bf,labelsep=space,justification=centering}
+\captionsetup[figure]{position=bottom,skip=5pt}
+\captionsetup[table]{position=top,skip=4pt}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlist{nosep,leftmargin=2em,labelsep=.6em}
+\setlist[itemize,1]{label=\textbullet}
+
+% ---------- Heading hierarchy ----------
+\ctexset{
+  section={
+    name={,、},number=\chinese{section},aftername={},
+    format=\centering\heitirole\zihao{4},
+    beforeskip=1.2ex plus .3ex minus .2ex,
+    afterskip=.8ex plus .2ex
+  },
+  subsection={
+    name={,},number=\arabic{section}.\arabic{subsection},
+    format=\raggedright\heitirole\zihao{5},
+    indent=0pt,
+    beforeskip=.9ex plus .2ex minus .1ex,
+    afterskip=.35ex
+  },
+  subsubsection={
+    name={,},number=\arabic{section}.\arabic{subsection}.\arabic{subsubsection},
+    format=\raggedright\heitirole\zihao{5},
+    indent=0pt,
+    beforeskip=.7ex plus .2ex minus .1ex,
+    afterskip=.25ex
+  }
+}
+
+% ---------- Page number and links ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\zihao{5}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\usepackage[hidelinks,unicode]{hyperref}
+\hypersetup{pdfauthor={},pdftitle={PAPER_TITLE},pdfsubject={全国大学生数学建模竞赛论文}}
+
+% ---------- Cross-reference wording ----------
+\newcommand{\eqnref}[1]{式（\ref{#1}）}
+\newcommand{\figref}[1]{图~\ref{#1}}
+\newcommand{\tabref}[1]{表~\ref{#1}}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\mat}[1]{\bm{#1}}
+\newenvironment{modelingreferences}
+  {\small\begin{enumerate}[label={\textup{[\arabic*]}},leftmargin=3em,labelsep=.5em,align=left,itemsep=0pt,parsep=0pt]}
+  {\end{enumerate}}
+
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% ==================== Abstract page (electronic paper page 1) ====================
+\begin{center}
+  {\heitirole\zihao{3} PAPER_TITLE\par}
+  \vspace{1.0em}
+  {\heitirole\zihao{4} 摘\quad 要\par}
+\end{center}
+
+\begingroup
+\songtirole\zihao{5}
+PAPER_ABSTRACT
+
+\vspace{0.6em}
+\noindent\textbf{关键词：}PAPER_KEYWORDS
+\endgroup
+
+\clearpage
+
+% ==================== Main text; do not add a table of contents ====================
+PAPER_BODY
+
+% Generated only when the Markdown contains fenced code blocks.
+PAPER_CODE_APPENDIX
+
+% Example reference-list form after \section{参考文献}:
+% \begin{modelingreferences}
+%   \item\label{ref:key} 作者. 文献题名[J]. 期刊名, 年, 卷(期): 页码.
+% \end{modelingreferences}
+
+\end{document}
