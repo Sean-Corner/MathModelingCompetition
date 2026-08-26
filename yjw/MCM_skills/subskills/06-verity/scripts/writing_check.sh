@@ -148,7 +148,7 @@ if paper is None:
         paper = candidates[0]
         info(f"auto-detected paper: {paper}")
     else:
-        paper = Path("paper/竞赛论文(草稿).md")
+        paper = Path("paper/竞赛论文.md")
 
 root_env = os.environ.get("ROOT_DIR", "").strip()
 root = Path(root_env) if root_env else (paper.parent.parent if paper.parent.name == "paper" else paper.parent)

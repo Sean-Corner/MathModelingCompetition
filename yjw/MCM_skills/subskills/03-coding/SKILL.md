@@ -1,13 +1,13 @@
 ---
 name: 03-coding
-description: "数学建模编程实现与数据图表草稿生成阶段。根据 ANALYSIS_MODELING_REPORT.md 编写可复现代码、运行求解、验证约束、输出 RESULTS_REPORT.md 并生成论文可用的数据驱动图表 PNG。"
+description: "数学建模编程实现与数据图表生成阶段。根据 ANALYSIS_MODELING_REPORT.md 编写可复现代码、运行求解、验证约束、输出 RESULTS_REPORT.md 并生成论文级数据驱动图表 PNG。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
-# 编程实现与数据图表草稿生成
+# 编程实现与数据图表生成
 
 本 skill 承接 `02-analysis-modeling`。目标是把 `reports/ANALYSIS_MODELING_REPORT.md` 里的模型和算法落实为可复现程序，跑出可信结果，并生成论文中需要的数据型图表。
-本skill生成的图都是草稿版本，不可当做最终版本。
+本 skill 生成的数据图即为论文级成品，直接供 `05-writing` 引用，后续不再二次重画。
 
 ## 数学建模规范参考
 
@@ -16,7 +16,7 @@ allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetc
 
 ## 阶段边界
 
-- 本阶段负责：代码、实验运行、结果、结果表、数据驱动图表草稿。
+- 本阶段负责：代码、实验运行、结果、结果表、数据驱动图表（论文级成品）。
 - 本阶段不负责：技术路线图、算法流程图、系统架构图、概念示意图。这些交给 `04-drawio`。
 - 本阶段不写论文正文，只为 `05-writing` 提供可信数值和图表资产。
 
@@ -70,7 +70,7 @@ AI 在实现、求解和作图过程中，必须把关键中间过程保存成�
 
 ### Step 4: 生成数据驱动图表
 
-根据 `reports/ANALYSIS_MODELING_REPORT.md` 和 `reports/RESULTS_REPORT.md` 规划图表，生成 PNG 到 `figures/`。
+根据 `reports/ANALYSIS_MODELING_REPORT.md` 和 `reports/RESULTS_REPORT.md` 规划图表，直接生成**论文级成品** PNG 到 `figures/`（一步到位，后续不再重画）。
 
 典型图表：
 
@@ -81,9 +81,11 @@ AI 在实现、求解和作图过程中，必须把关键中间过程保存成�
 
 图表要求：
 
-- PNG 输出（≥300 DPI），适合嵌入 Word。
+- PNG 输出（≥300 DPI），适合嵌入论文 md。
 - 不在图内写大标题，标题由论文正文/图题呈现。
 - 中文论文图表使用中文坐标轴和图例；英文论文使用英文。
 - 不生成流程图/架构图/路线图。
+
+**可选 scibox-figure 模板库**：若某张图命中 `scibox-figure/` 的 11 个内置科研模板（SHAP 蜂群、配对云雨、交叉验证 ROC、泰勒图、相关矩阵组合图、预测真实值边缘分布、TPE 调参曲面、下三角相关矩阵半边小提琴、分组环形热图、城市公园降温组合、Nature 和弦图），可调用 `scibox-figure/scripts/render_template.py` 快速出图；**必须把内置模拟数据替换为 `results/*.csv` 的真实数据**。不命中的通用图（柱/折/散点/热图/箱线等）直接用 matplotlib 出图。详见 `scibox-figure/SKILL.md`。
 
 图表可以由主程序或独立脚本生成，不强制固定脚本名。无论采用哪种方式，都必须保存图表对应的数据来源和生成记录。

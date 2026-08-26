@@ -33,11 +33,6 @@
       "step": 6,
       "skill": "06-verity",
       "path": "subskills/06-verity"
-    },
-    {
-      "step": 7,
-      "skill": "07-graph-optimization",
-      "path": "subskills/07-graph-optimization"
     }
   ],
   "tools": [

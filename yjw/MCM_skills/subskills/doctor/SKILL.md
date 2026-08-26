@@ -14,7 +14,7 @@ allowed-tools: Bash(*), Read, Write
 
 | 工具 | 用途 | 检测命令 |
 | --- | --- | --- |
-| `python3` | 数值计算与图表（03-coding-visual） | `command -v python3` |
+| `python3` | 数值计算与图表（03-coding） | `command -v python3` |
 | `drawio` / `draw.io` | DrawIO 流程图导出 PNG（04-drawio） | `command -v drawio \|\| command -v draw.io` |
 
 ### Python 包
@@ -154,10 +154,10 @@ Doctor 检查完成（macOS）
 工作流就绪状态：
   01-start-mathmodel   ✓
   02-analysis-modeling ✓
-  03-coding-visual     ✓（scipy 缺失，部分功能受限）
+  03-coding     ✓（scipy 缺失，部分功能受限）
   04-drawio            ⚠ drawio 未安装，PNG 导出将跳过
   05-writing           ✓
-  06-verity            ✓（文档视觉检查需人工打开 Word/md 确认）
+  06-verity            ✓（文档视觉检查需人工打开 md 预览确认）
 ```
 
 ## 注意事项

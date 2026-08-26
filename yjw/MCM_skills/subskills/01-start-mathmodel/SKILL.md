@@ -58,22 +58,21 @@ step skills
 ├── todo.md                      # 1: 待办事项
 ├── reports/                     # 各阶段文档报告
 │   ├── ANALYSIS_MODELING_REPORT.md  # 1: 赛题分析-建模报告（02-analysis-modeling）
-│   ├── RESULTS_REPORT.md            # 2: 结果报告（03-coding-visual）
+│   ├── RESULTS_REPORT.md            # 2: 结果报告（03-coding）
 │   ├── DRAWIO_REPORT.md             # 3: 非数据图说明（04-drawio）
 │   ├── VERIFY_REPORT.md             # 5: 验收报告（06-verity）
-├── code/                        # 2: 代码（03-coding-visual）
+├── code/                        # 2: 代码（03-coding）
 │   ├── problem1.py
 │   ├── problem2.py
 │   ├── problem3.py               # 问题的数量应该更具题目动态调整
 │   ├── ... 
 │   └── utils.py
-├── results/                     # 2: 结果记录（03-coding-visual）
-├── figures/                     # 2+3: 所有图表（03-coding-visual + 04-drawio）
+├── results/                     # 2: 结果记录（03-coding）
+├── figures/                     # 2+3: 所有图表（03-coding + 04-drawio）
 │   ├── *.png                    #     数据图 + 非数据图 PNG
 │   ├── *.drawio                 #     非数据图源文件
-├── paper/                       # 4: 论文（05-writing / 07-graph-optimization）
-│   ├── 竞赛论文(草稿).md        #     论文 md 正文（05 输出）
-│   └── 竞赛论文.docx            #     论文 Word 终稿（07 输出）
+├── paper/                       # 4: 论文（05-writing）
+│   └── 竞赛论文.md              #     论文 md（05 输出）
 ```
 
 方案必须明确每个阶段由哪个下游 skill 负责，以及该阶段应产出什么文件。

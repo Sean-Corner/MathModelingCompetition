@@ -1,13 +1,14 @@
 ---
 name: 04-drawio
-description: "数学建模非数据型图示草稿绘制阶段。根据 ANALYSIS_MODELING_REPORT.md、RESULTS_REPORT.md 和已有 figures/ 生成技术路线图、子问题求解流程图、模型结构图、数据处理流程图等 DrawIO 图，并导出论文可引用 PNG。"
+description: "数学建模非数据型图示绘制阶段。根据 ANALYSIS_MODELING_REPORT.md、RESULTS_REPORT.md 和已有 figures/ 生成论文级技术路线图、子问题求解流程图、模型结构图、数据处理流程图等 DrawIO 图，并导出论文可引用 PNG。"
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
 # DrawIO 非数据图示绘制
 
-本 skill 承接 `03-coding`。它只负责论文中的**非数据型图示的草稿版本**，例如技术路线图、求解流程图、模型结构图、数据处理流程图、变量关系图、指标体系图等。
-本skill生成的图都是草稿，不可作为最终版本。
+本 skill 承接 `03-coding`。它只负责论文中的**非数据型图示（论文级成品）**，例如技术路线图、求解流程图、模型结构图、数据处理流程图、变量关系图、指标体系图等。
+本 skill 生成的示意图即为论文级成品，直接供 `05-writing` 引用，后续不再二次重画。
+
 ## 数学建模规范参考
 
 如需领域判断，读取 `../../references/math_modeling_norms.md` 中的“图表与可视化”和“非数据图工具选择”小节。该文件只作为规范知识库，不要求为了凑数量生成额外图示。
@@ -77,68 +78,38 @@ DRAWIO PLAN CHECKLIST:
 - 相关性热力图
 - 分布图和箱线图
 
-### Step 3: 生成 DrawIO 源文件
+### Step 3: 用 scibox-diagram 绘制
 
-每张图一个 `.drawio` 文件，放在 `figures/`。
+所有示意图统一使用本目录下的 `scibox-diagram/` 框架绘制（`.drawio` 源文件为最终交付源，放在 `figures/`）。三选一路径：
 
-DrawIO 内容要求：
+- **套模板**：全文脉络/研究框架/执行流程/任务分解 → `roadmap-5band` / `framework-3col` / `stageflow-3col` / `taskflow-land`（复制 `scibox-diagram/assets/<id>/example.json` 改写后渲染）。
+- **从零手写 XML**：算法流程/模型架构/实验设计/机制示意 → 照 `scibox-diagram/references/authoring.md` 手写。
+- **高保真复刻**：给了参考图要照着重画 → 照 `scibox-diagram/references/replication.md` 执行。
 
-- 文字语言与论文语言一致。
-- 节点文字短，必要时双行，不堆长句。
-- 同类节点样式统一。
-- 箭头方向清晰，避免交叉。
-- 图中不写大段解释，解释留给论文正文。
-- 不使用装饰性阴影和过度渐变。
-
-生成大 XML 时，分段写入，避免截断。示例：
+渲染、校验与导出（Windows 下 `python3` 换 `python`）：
 
 ```bash
-mkdir -p figures
-cat << 'XMLEOF' > figures/fig_roadmap.drawio
-<mxfile>
-  <diagram name="Page-1">
-    <mxGraphModel>
-      <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-        <!-- nodes and edges -->
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
-XMLEOF
+python scibox-diagram/scripts/roadmap_5band.py content.json -o figures/fig_roadmap.drawio   # 模板渲染
+python scibox-diagram/scripts/check_layout.py figures/fig_roadmap.drawio --strict            # 版式门禁（应 FAIL 0 / WARN 0）
+python scibox-diagram/scripts/export_figure.py figures/fig_roadmap.drawio                     # 导出 1:1 PNG + PDF（需 drawio 命令行）
+python scibox-diagram/scripts/preview_html.py figures/fig_roadmap.drawio                      # 无 drawio 时的浏览器预览
 ```
 
-### Step 4: 导出 PNG
+模板语义约定、字数预算、图标、复刻闭环、九区盘点等详见 `scibox-diagram/SKILL.md` 与其 `references/`。
 
-优先用可用的 DrawIO 命令导出 PNG：
+### Step 4: 自检
 
-```bash
-DRAWIO_BIN="$(command -v drawio 2>/dev/null || command -v draw.io 2>/dev/null || command -v draw.io.exe 2>/dev/null || true)"
-if [ -n "$DRAWIO_BIN" ]; then
-  "$DRAWIO_BIN" --export --format png --scale 2 --output figures/fig_roadmap.png figures/fig_roadmap.drawio
-else
-  echo "DrawIO command not found; keep .drawio source and record export failure."
-fi
-```
+每张图必须检查（配合 `check_layout.py --strict`）：
 
-如果无法导出 PNG，保留 `.drawio`，在 `reports/DRAWIO_REPORT.md` 记录失败原因和建议导出命令。
-
-### Step 5: 自检和修复
-
-每张图必须检查：
-
-- `.drawio` 文件非空。
-- 若导出成功，`.png` 文件非空。
-- 节点没有明显重叠。
-- 箭头不穿过核心节点。
+- `.drawio` 文件非空；若导出成功，`.png` 文件非空。
+- 打开 PNG 过目：文字溢出/压线、箭头方向与语义、同族元素对齐同宽、数值无抄错。
 - 字号、颜色、边框风格一致。
 - 文件名和图意一致。
 - 没有与 `03-coding` 的数据图重复。
 
 发现问题要修 `.drawio` 并重新导出，不要只在报告里解释。
 
-### Step 6: 写生成记录
+### Step 5: 写生成记录
 
 创建 `reports/DRAWIO_REPORT.md`，至少包含：
 
