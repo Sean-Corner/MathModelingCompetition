@@ -25,11 +25,11 @@
 
 例如，不要只写“对数据进行标准化”，而应写明：
 
-\[
+$$
  z_{ij}=\frac{x_{ij}-\bar{x}_{j}}{s_j},
-\]
+$$
 
-其中，`x_{ij}` 为第 `i` 个样本的第 `j` 个特征，`\bar{x}_{j}` 和 `s_j` 分别为该特征在训练数据上的均值和标准差，并说明标准化参数不能由验证集或测试集反向计算。
+其中，$`x_{ij}`$ 为第 $`i`$ 个样本的第 $`j`$ 个特征，$`\bar{x}_{j}`$ 和 $`s_j`$ 分别为该特征在训练数据上的均值和标准差，并说明标准化参数不能由验证集或测试集反向计算。
 
 ### 2.x 变量、参数与基本假设
 
@@ -55,35 +55,35 @@
 
 如果问题是优化问题，应明确写出决策变量、目标函数和约束条件：
 
-\[
-\begin{aligned}
-\min_{\boldsymbol{x}}\quad & F(\boldsymbol{x}),\\
-\text{s.t.}\quad & g_k(\boldsymbol{x})\le 0,\quad k=1,\ldots,K,\\
-& h_l(\boldsymbol{x})=0,\quad l=1,\ldots,L.
-\end{aligned}
-\]
+$$
+\begin{gathered}
+\min_{\boldsymbol{x}}\quad F(\boldsymbol{x}), \\
+\text{s.t.}\quad g_k(\boldsymbol{x})\le 0,\quad k=1,\ldots,K, \\
+\quad\;\; h_l(\boldsymbol{x})=0,\quad l=1,\ldots,L.
+\end{gathered}
+$$
 
 不能只给出这一行抽象形式，还要逐项解释：
 
 - `F` 如何由题目要求、成本、误差、风险或收益定义得到；
-- 每个 `g_k` 和 `h_l` 对应哪一条实际限制；
+- 每个 $`g_k`$ 和 $`h_l`$ 对应哪一条实际限制；
 - 上下界、整数性、互斥性、归一化或概率和为 1 等条件从何而来；
 - 多目标问题如何加权、分层优化或转化为约束问题，以及权重或阈值的来源。
 
 对于统计或机器学习模型，也应把估计准则写清楚。例如，若假设
 
-\[
+$$
 y_i=f(\boldsymbol{x}_i;\boldsymbol{\theta})+\varepsilon_i,\qquad
 \varepsilon_i\sim N(0,\sigma^2),
-\]
+$$
 
 则应说明在该假设下，极大似然估计等价于最小化残差平方和：
 
-\[
+$$
 \hat{\boldsymbol{\theta}}
 =\arg\min_{\boldsymbol{\theta}}
 \sum_{i=1}^{n}\left[y_i-f(\boldsymbol{x}_i;\boldsymbol{\theta})\right]^2.
-\]
+$$
 
 如果加入正则项、权重、鲁棒损失或类别不平衡修正，应继续解释其来源和作用，而不是只写模型名称。
 
@@ -153,39 +153,39 @@ y_i=f(\boldsymbol{x}_i;\boldsymbol{\theta})+\varepsilon_i,\qquad
 
 ### 4.2 合格的结构化写法示意
 
-设第 `i` 个对象在决策时点 `t` 下的风险为 `r_i(t)`，对象被划分为第 `g` 组，组 `g` 的决策时点为 `\tau_g`。令 `z_{ig}` 表示对象 `i` 是否属于组 `g`：属于时取 1，否则取 0。若每个对象必须且只能属于一个组，则有
+设第 `i` 个对象在决策时点 `t` 下的风险为 $`r_i(t)`$，对象被划分为第 `g` 组，组 `g` 的决策时点为 $`\tau_g`$。令 $`z_{ig}`$ 表示对象 `i` 是否属于组 `g`：属于时取 1，否则取 0。若每个对象必须且只能属于一个组，则有
 
-\[
+$$
 \sum_{g=1}^{G}z_{ig}=1,\qquad z_{ig}\in\{0,1\}.
-\]
+$$
 
-若题目要求在满足达标概率不低于 `p_0` 的前提下使平均风险最小，则由风险的加权平均定义目标函数
+若题目要求在满足达标概率不低于 $`p_0`$ 的前提下使平均风险最小，则由风险的加权平均定义目标函数
 
-\[
+$$
 R(\boldsymbol{z},\boldsymbol{\tau})
 =\frac{1}{n}\sum_{i=1}^{n}\sum_{g=1}^{G}
  z_{ig}r_i(\tau_g),
-\]
+$$
 
 并将达标概率要求写为
 
-\[
+$$
 \frac{\sum_{i=1}^{n}z_{ig}P_i(\tau_g)}
      {\sum_{i=1}^{n}z_{ig}}
 \ge p_0,
 \qquad g=1,\ldots,G,
-\]
+$$
 
 同时要求每个组非空，即
 
-\[
+$$
 \sum_{i=1}^{n}z_{ig}\ge 1,
 \qquad g=1,\ldots,G,
-\]
+$$
 
-其中 `P_i(t)` 为由前述预测模型得到的对象 `i` 在时点 `t` 达标的概率。于是，本问题可表示为
+其中 $`P_i(t)`$ 为由前述预测模型得到的对象 `i` 在时点 `t` 达标的概率。于是，本问题可表示为
 
-\[
+$$
 \begin{aligned}
 \min_{\boldsymbol{z},\boldsymbol{\tau}}\quad
 & R(\boldsymbol{z},\boldsymbol{\tau}),\\
@@ -195,7 +195,7 @@ R(\boldsymbol{z},\boldsymbol{\tau})
 & \sum_{i=1}^{n}z_{ig}\ge 1,\quad g=1,\ldots,G,\\
 & \tau_{\min}\le\tau_g\le\tau_{\max},\quad \tau_g\in\mathcal{T}.
 \end{aligned}
-\]
+$$
 
 求解时，先根据候选边界生成满足组数和时点范围的初始方案；随后计算每个方案的风险 `R`，对违反达标概率或时点范围的方案施加惩罚；再按照所选算法更新方案。每轮迭代后保留当前最优可行解，当目标函数连续若干轮变化小于给定阈值，或达到最大迭代次数时停止。最终报告各组边界、决策时点、目标函数值、约束满足情况，并通过改变 `p_0`、误差水平或初始方案检验结果稳定性。
 
